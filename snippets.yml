@@ -1,0 +1,12 @@
+---
+#####
+# Snippets playbook
+#####
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  roles:
+    # AWS ec2_remote_facts.
+    - role: aws.ec2_remote_facts
+      vault_vars: "{{ hostvars['127.0.0.1']['vault'] }}" # When using AWS, there are often vars in localhost that are needed...

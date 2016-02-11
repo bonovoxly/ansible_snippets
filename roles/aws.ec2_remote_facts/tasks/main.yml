@@ -1,0 +1,19 @@
+---
+# tasks file for aws.ec2_remote_facts
+- name: Gather EC2 facts.
+  ec2_remote_facts:
+    aws_secret_key: "{{ vault_vars.aws_secret_key }}"
+    aws_access_key: "{{ vault_vars.aws_access_key }}"
+    region: "{{ vault_vars.region }}"
+  register: aws_ec2_facts
+
+- name: Debug
+  debug:
+    msg: "{{ aws_ec2_facts }}"
+
+- name: Get only running instance IP addresses.
+  debug:
+    msg: "Instance: {{ item.0 }} has IP address: {{ item.1 }}"
+  with_together:
+    - "{{ aws_ec2_facts.instances|selectattr('state', 'equalto', 'running')|map(attribute='tags.Name')|list }}"
+    - "{{ aws_ec2_facts.instances|selectattr('state', 'equalto', 'running')|map(attribute='private_ip_address')|list }}"
