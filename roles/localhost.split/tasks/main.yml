@@ -7,6 +7,6 @@
 
 - name: Move the symbolic link.
   file:
-    dest: "{{ localhost_split.software_tar_file_location }}{{ localhost_split.software_tar_file.split('.')[0] }}"
+    dest: "{{ localhost_split.software_tar_file_location }}{{ localhost_split.software_tar_file.split('-')[0] }}"
     src: "{{ localhost_split.software_tar_file_location }}{{ localhost_split.software_tar_file.split('.tar')[0] }}/"
     state: link
