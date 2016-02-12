@@ -1,0 +1,4 @@
+---
+localhost_split:
+  software_tar_file_location: "{{ ansible_env.PWD }}/working/"
+  software_tar_file: software.2.0.0.tar

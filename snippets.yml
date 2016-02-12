@@ -9,4 +9,10 @@
   roles:
     # AWS ec2_remote_facts.
     - role: aws.ec2_remote_facts
-      vault_vars: "{{ hostvars['127.0.0.1']['vault'] }}" # When using AWS, there are often vars in localhost that are needed...
+      tags:
+        - ec2_remote_facts
+      vault_vars: "{{ hostvars['127.0.0.1']['vault'] }}" # When using AWS, there are often vars in different hosts.  I use this notation a lot...
+    - role: localhost.split
+      tags:
+        - split
+      localhost_split: "{{ hostvars['127.0.0.1']['localhost_split'] }}" # yes i know this notation is excessive :)
