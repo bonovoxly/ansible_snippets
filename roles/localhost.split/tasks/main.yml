@@ -2,7 +2,7 @@
 # tasks file for localhost.split
 - name: Untar
   unarchive:
-    src: "{{ localhost_split.software_tar_file_location }}{{ localhost_split.software_tar_file }}"
+    src: "{{ localhost_split.software_tar_file }}"
     dest: "{{ localhost_split.software_tar_file_location }}"
 
 - name: Move the symbolic link.

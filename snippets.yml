@@ -12,6 +12,7 @@
       tags:
         - ec2_remote_facts
       vault_vars: "{{ hostvars['127.0.0.1']['vault'] }}" # When using AWS, there are often vars in different hosts.  I use this notation a lot...
+    # To set this up, create the directory 'working', copy the files/software.1.2.3.tar file there.  Create symlink in that directory.  I should create a setup task...
     - role: localhost.split
       tags:
         - split
