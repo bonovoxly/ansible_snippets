@@ -32,7 +32,7 @@
         api: "{{ hipchat_vars.api }}"
         color: "{{ hipchat_vars.color }}"
         from: "{{ hipchat_vars.from }}"
-        msg: "{{ lookup('file', ./notify.txt) }}"
+        msg: "{{ lookup('file', './notify.txt') }}"
         msg_format: html
         room: "{{ hipchat_vars.room }}"
         token: "{{ hipchat_vars.token }}"
