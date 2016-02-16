@@ -17,3 +17,26 @@
       tags:
         - split
       localhost_split: "{{ hostvars['127.0.0.1']['localhost_split'] }}" # yes i know this notation is excessive :)
+
+  post_tasks:
+    # Hipchat/templated message notification example
+    - name: Create notify message from template.
+      template:
+        src: files/notify.txt.j2
+        dest: ./notify.txt
+      with_together:
+        - "{{ item_result_list_1 }}"
+        - "{{ item_result_list_2 }}"
+    - name: HipChat notify.
+      hipchat:
+        api: "{{ hipchat_vars.api }}"
+        color: "{{ hipchat_vars.color }}"
+        from: "{{ hipchat_vars.from }}"
+        msg: "{{ lookup('file', ./notify.txt) }}"
+        msg_format: html
+        room: "{{ hipchat_vars.room }}"
+        token: "{{ hipchat_vars.token }}"
+    - name: Delete temporary notify text.
+      file:
+        path: notify.txt
+        state: absent
