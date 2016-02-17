@@ -25,8 +25,8 @@
         src: files/notify.txt.j2
         dest: ./notify.txt
       with_together:
-        - "{{ item_result_list_1 }}"
-        - "{{ item_result_list_2 }}"
+        - item_result_list_1
+        - item_result_list_2
     - name: HipChat notify.
       hipchat:
         api: "{{ hipchat_vars.api }}"
