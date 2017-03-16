@@ -1,10 +1,10 @@
-# ansible_snippets
+# Ansible Snippets
 
 A collection of Ansible snippets and examples.  These are small examples cut from [my Ansible playbooks repository](https://github.com/bonovoxly/playbook).
 
 I simplified this to one page to make it a little more clear.
 
-# default variable
+# Using a Default Variable
 
 ~~~yml
 # sets a default fact, if the Ansible variable `var` doesn't exist.
@@ -17,7 +17,7 @@ I simplified this to one page to make it a little more clear.
     msg: "{{ var | default(another_var) }}"
 ~~~
 
-# ec2_remote_facts
+# Getting EC2 Remote Facts
 
 ~~~yml
 # gathers facts and registers the output as `ec2_facts`
@@ -40,7 +40,7 @@ I simplified this to one page to make it a little more clear.
     - "{{ aws_ec2_facts.instances|selectattr('state', 'equalto', 'running')|map(attribute='private_ip_address')|list }}"
 ~~~
 
-# add EC2 instances to Ansible hosts dynamically
+# Add EC2 Instances Found to an Ansible Group
 
 ~~~yml
 {% raw %}
@@ -54,7 +54,7 @@ I simplified this to one page to make it a little more clear.
 {% endraw %}
 ~~~
 
-# split a variable
+# Splitting a Variable
 
 ~~~yml
 # set the variable facts
@@ -75,7 +75,7 @@ I simplified this to one page to make it a little more clear.
     state: link
 ~~~
 
-# HipChat notify
+# HipChat Notify
 
 ~~~yml
 # Hipchat/templated message notification example
