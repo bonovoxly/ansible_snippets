@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+  tasks:
+    - name: Gather EC2 remote facts.
+      ec2_remote_facts:
+        region: "{{ region | default('us-east-1') }}"
+        filters:
+          instance-state-name: stopped
+      register: ec2_remote_facts
+    - name: Debug.
+      debug:
+        msg: "{{ ec2_remote_facts }}"
