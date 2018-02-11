@@ -1,0 +1,24 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Read JSON file (can also be a variable).
+      shell: cat files/example.json
+      register: json
+
+    - name: Get simple value.
+      set_fact:
+        simple_value: "{{ (json.stdout | from_json).example_simple.name }}"
+
+    - name: Simple debug.
+      debug:
+        msg: "{{ simple_value }}"
+
+    - name: Get foo value.
+      set_fact:
+        foo_value: "{{ (json.stdout | from_json).example_list | map(attribute='foo') | list }}"
+
+    - name: Jinja list debug.
+      debug:
+        msg: "{% for each in foo_value %}{{ each }}{% if not loop.last %},{% endif %}{% endfor %}"
+      

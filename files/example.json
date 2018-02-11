@@ -1,0 +1,19 @@
+{
+    "example_simple": {
+        "name": "simple",
+        "foo": "value",
+        "item": "this"
+    },
+    "example_list": [
+	{
+	    "name": "first",
+	    "foo": "bar",
+	    "item": "thud"
+	},
+	{
+	    "name": "second",
+	    "foo": "grunt",
+	    "item": "baz"
+	}
+    ]
+}
