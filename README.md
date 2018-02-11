@@ -113,7 +113,7 @@ I simplified this to one page to make it a little more clear.
   set_fact:
     foo_value: "{{ (json.stdout | from_json).example_list | map(attribute='foo') | list }}"
 
-- name: Jinja list debug.
+- name: Jinja list debug, printing out the list as comma seperated.
   debug:
     msg: "{% for each in foo_value %}{{ each }}{% if not loop.last %},{% endif %}{% endfor %}"
 ```
