@@ -97,3 +97,23 @@ I simplified this to one page to make it a little more clear.
     path: notify.txt
     state: absent
 ~~~
+
+# JSON Manipulation and Formatting
+
+```
+- name: Get simple value.
+  set_fact:
+    simple_value: "{{ (json.stdout | from_json).example_simple.name }}"
+
+- name: Simple debug.
+  debug:
+    msg: "{{ simple_value }}"
+
+- name: Get foo value.
+  set_fact:
+    foo_value: "{{ (json.stdout | from_json).example_list | map(attribute='foo') | list }}"
+
+- name: Jinja list debug.
+  debug:
+    msg: "{% for each in foo_value %}{{ each }}{% if not loop.last %},{% endif %}{% endfor %}"
+```
